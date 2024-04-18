@@ -1,18 +1,27 @@
 import { FC } from 'react';
 import styled from '@emotion/styled';
+import SearchHolidays from './components/search-holidays';
 
 const MainContainer = styled.div`
-  position: relative;
-  display: flex;
-
   width: 100vw;
   height: 100vh;
-  overflow: hidden;
+`;
+const MainInner = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 auto;
+  padding: 30px 40px;
+  width: 100%;
+  max-width: 1200px;
 `;
 
-const MainPage: FC = () => {
-  const a = '메인이랍니다';
-  return <MainContainer>{a}</MainContainer>;
-};
+const MainPage: FC = () => (
+  <MainContainer>
+    <MainInner>
+      <SearchHolidays />
+    </MainInner>
+  </MainContainer>
+);
 
 export default MainPage;
