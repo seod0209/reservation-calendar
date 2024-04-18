@@ -1,0 +1,146 @@
+{
+  "env": {
+    "browser": true,
+    "es2021": true,
+    "node": true,
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:prettier/recommended",
+    "plugin:react/recommended",
+    "plugin:react-hooks/recommended",
+    "plugin:@typescript-eslint/recommended",
+    "airbnb",
+    "airbnb/hooks",
+    "airbnb-typescript",
+  ],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaVersion": "latest",
+    "sourceType": "module",
+    "project": ["**/tsconfig.json"],
+  },
+  "plugins": ["@typescript-eslint", "react"],
+  "rules": {
+    "react/react-in-jsx-scope": 0,
+    "react/prefer-stateless-function": 0,
+    "react/jsx-filename-extension": 0,
+    "react/jsx-one-expression-per-line": 0,
+    "no-nested-ternary": 0,
+    "no-alert": "off",
+    "no-console": "off",
+    "no-underscore-dangle": "off",
+    "no-return-await": "off",
+    "yoda": "off",
+    "class-methods-use-this": "off",
+    "consistent-return": "off", // it does not recognize switch exhaustiveness
+    "no-param-reassign": "off",
+    "default-case": "off",
+    "implicit-arrow-linebreak": "off", // conflict with prettier
+    "operator-linebreak": "off",
+    "function-paren-newline": "off",
+    "max-len": [
+      "error",
+      {
+        "code": 140,
+        "ignoreComments": true,
+        "ignoreTrailingComments": true,
+        "ignoreUrls": true,
+        "ignoreStrings": true,
+        "ignoreTemplateLiterals": true,
+        "ignoreRegExpLiterals": true,
+      },
+    ],
+    "object-curly-newline": "off", // We rely on prettier now
+    "import/prefer-default-export": "off",
+    "import/extensions": [
+      "warn",
+      "always",
+      {
+        "ignorePackages": true,
+        "pattern": {
+          "js": "never",
+          "jsx": "never",
+          "ts": "never",
+          "tsx": "never",
+        },
+      },
+    ],
+    "react/function-component-definition": [
+      2,
+      {
+        "namedComponents": ["function-expression", "arrow-function"],
+      },
+    ],
+
+    "react/require-default-props": [
+      "error",
+      {
+        "functions": "defaultArguments",
+      },
+    ],
+    "react/jsx-props-no-spreading": "off",
+    "react/jsx-wrap-multilines": [
+      "error",
+      {
+        "prop": "ignore",
+      },
+    ],
+    // https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/issues/302#issuecomment-425512505
+    "jsx-a11y/label-has-associated-control": [
+      "error",
+      {
+        "required": {
+          "some": ["nesting", "id"],
+        },
+      },
+    ],
+    "@typescript-eslint/no-unused-vars": [
+      "error",
+      {
+        "varsIgnorePattern": "^(_|unused)",
+        "argsIgnorePattern": "^(_|unused)",
+        // destructuredArrayIgnorePattern: '^(_|unused)',
+        "caughtErrorsIgnorePattern": "^(_|unused)",
+      },
+    ],
+    "@typescript-eslint/member-delimiter-style": "off",
+    "@typescript-eslint/switch-exhaustiveness-check": "error",
+    "@typescript-eslint/no-namespace": "off",
+    "@typescript-eslint/return-await": "off",
+    "@typescript-eslint/indent": "off",
+    "@typescript-eslint/consistent-type-definitions": "off", // we don't use this because interface and type are different
+
+    "@typescript-eslint/no-confusing-void-expression": [
+      "error",
+      {
+        "ignoreArrowShorthand": true,
+        "ignoreVoidOperator": true,
+      },
+    ],
+    "react/jsx-curly-brace-presence": [
+      "error",
+      { "props": "never", "children": "never" },
+    ],
+    "react-hooks/exhaustive-deps": [
+      "warn",
+      {
+        "enableDangerousAutofixThisMayCauseInfiniteLoops": true,
+      },
+    ],
+    "import/no-extraneous-dependencies": 0, // 테스트 또는 개발환경을 구성하는 파일에서는 devDependency 사용을 허용
+    "@typescript-eslint/no-explicit-any": "off",
+    "@typescript-eslint/no-use-before-define": ["error", "nofunc"],
+    "@typescript-eslint/no-non-null-assertion": "off", // we use strictNullChecks
+    "@typescript-eslint/naming-convention": [
+      "error",
+      {
+        "selector": "variable",
+        "modifiers": ["unused"],
+        "format": ["camelCase", "UPPER_CASE"],
+        "leadingUnderscore": "require",
+      },
+    ],
+    "no-void": ["error", { "allowAsStatement": true }],
+  },
+}
