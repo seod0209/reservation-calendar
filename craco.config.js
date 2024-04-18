@@ -1,5 +1,5 @@
 const swcPlugin = require('./craco.swcPlugin');
-
+const path = require('path');
 module.exports = {
   plugins: [
     {
@@ -20,4 +20,12 @@ module.exports = {
       },
     },
   ],
+  webpack: {
+    alias: {
+      '@/*': path.resolve(__dirname, './src/*'),
+      '@Pages/*': path.resolve(__dirname, './src/pages/*'),
+      '@Public/*': path.resolve(__dirname, './public/*'),
+      '@Assets/*': path.resolve(__dirname, './src/assets/*'),
+    },
+  },
 };
