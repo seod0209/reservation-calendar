@@ -11,7 +11,8 @@ const MainContainer = styled.div`
 `;
 
 const MainPage: FC = () => {
-  return <MainContainer>메인이랍니다</MainContainer>;
+  const a = '메인이랍니다';
+  return <MainContainer>{a}</MainContainer>;
 };
 
 export default MainPage;
