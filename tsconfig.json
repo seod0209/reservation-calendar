@@ -17,5 +17,5 @@
     "jsx": "react-jsx"
   },
   "include": ["src", ".eslintrc"],
-  "extends": "./tsconfig.paths.json"
+  "extends": ["./tsconfig.paths.json"]
 }
