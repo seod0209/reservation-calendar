@@ -1,9 +1,9 @@
-const CracoSwcPlugin = require('craco-swc');
+const swcPlugin = require('./craco.swcPlugin');
 
 module.exports = {
   plugins: [
     {
-      plugin: CracoSwcPlugin,
+      plugin: swcPlugin,
       options: {
         swcLoaderOptions: {
           jsc: {
