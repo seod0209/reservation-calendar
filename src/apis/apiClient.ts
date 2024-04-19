@@ -1,7 +1,6 @@
 import axios, { type AxiosInstance } from 'axios';
 
 const BASE_URL = process.env.REACT_APP_HOLIDAY_DATA_BASE_URL;
-console.log('REACT_APP_HOLIDAY_DATA_BASE_URL', BASE_URL);
 function createApi(): AxiosInstance {
   const api = axios.create({
     baseURL: BASE_URL,

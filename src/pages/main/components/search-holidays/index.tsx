@@ -19,8 +19,8 @@ const PageTitle = styled.h3``;
 const SearchHolidays: FC = () => {
   useEffect(() => {
     fetchPublicHolidays(2024, 'KR')
-      .then((data) => {
-        console.log(data);
+      .then(() => {
+        //  console.log(data);
       })
       .catch((err) => console.error(err));
   }, []);
