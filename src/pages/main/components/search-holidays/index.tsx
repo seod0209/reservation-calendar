@@ -6,12 +6,17 @@ import { fetchPublicHolidays } from '../../../../apis/index';
 const SearchHolidaysContainer = styled.div`
   padding: 20px;
   width: 100%;
+  min-width: 340px;
   border-radius: 16px;
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
   background-color: rgb(255, 255, 255);
   display: flex;
   flex-direction: column;
   gap: 20px;
+
+  @media (max-width: 768px) {
+    padding: 16px;
+  }
 `;
 
 const PageTitle = styled.h3``;

@@ -14,6 +14,10 @@ const MainInner = styled.div`
   padding: 30px 40px;
   width: 100%;
   max-width: 1200px;
+
+  @media (max-width: 768px) {
+    padding: 20px;
+  }
 `;
 
 const MainPage: FC = () => (

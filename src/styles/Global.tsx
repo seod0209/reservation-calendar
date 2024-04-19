@@ -45,6 +45,11 @@ const reset = css`
     outline: none;
     cursor: pointer;
    
+    &:disabled {
+      color: #8d949f;
+      cursor: default;
+    }
+   
   }
 
   p,
