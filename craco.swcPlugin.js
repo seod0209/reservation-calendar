@@ -6,6 +6,8 @@ module.exports = {
   plugin: {
     ...CracoSwcPlugin,
     overrideWebpackConfig: ({ webpackConfig, pluginOptions, context: { paths } }) => {
+      webpackConfig.resolve.plugins.push(new TsconfigPathsPlugin({}));
+
       addAfterLoader(webpackConfig, loaderByName('babel-loader'), {
         test: /\.(js|mjs|jsx|ts|tsx)$/,
         include: paths.appSrc,

@@ -1,5 +1,6 @@
 import { FC, useEffect } from 'react';
 import styled from '@emotion/styled';
+import Calendar from '../../../../components/calendar';
 import { fetchPublicHolidays } from '../../../../apis/index';
 
 const SearchHolidaysContainer = styled.div`
@@ -26,6 +27,7 @@ const SearchHolidays: FC = () => {
   return (
     <SearchHolidaysContainer>
       <PageTitle>서비스 예약 가능일 확인</PageTitle>
+      <Calendar />
     </SearchHolidaysContainer>
   );
 };
