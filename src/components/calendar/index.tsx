@@ -1,13 +1,13 @@
 import { FC, useCallback } from 'react';
-import styled from '@emotion/styled';
 import { subMonths } from 'date-fns';
+import styled from '@emotion/styled';
 
 import { useCalendar } from '../../hooks/use-calendar';
 
 import Header from './Header';
 
 const CalendarContainer = styled.div`
-  overflow: hidden;
+  width: fit-content;
 `;
 const RowContainer = styled.div`
   display: flex;
@@ -55,7 +55,7 @@ const Calendar: FC = () => {
   const handlePrevMonth = () => setCurrDate(subMonths(currDate, 1));
 
   const handleNextMonth = () => setCurrDate(subMonths(currDate, -1));
-  console.log(currDate, currDate.getMonth());
+
   return (
     <CalendarContainer>
       <Header

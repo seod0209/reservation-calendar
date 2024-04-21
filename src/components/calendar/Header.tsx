@@ -1,13 +1,19 @@
 import { FC } from 'react';
+import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import styled from '@emotion/styled';
 
 const HeaderContainer = styled.div`
   display: flex;
-  justify-content: space-beteen;
+  justify-content: space-between;
   align-items: center;
+  padding: 8px 16px;
+  width: 100%;
 `;
 
 const Button = styled.button`
+  padding: 8px;
+  width: 30px;
+  height: 30px;
   border-radius: 50px;
   overflow: hidden;
   &:hover {
@@ -17,6 +23,7 @@ const Button = styled.button`
 
 const YearAndMonth = styled.div`
   font-weight: 500;
+  letter-spacing: 1.5px;
 `;
 
 interface HeaderProps {
@@ -27,12 +34,14 @@ interface HeaderProps {
 }
 const Header: FC<HeaderProps> = ({ currMonth, currYear, handlePrevMonth, handleNextMonth }) => (
   <HeaderContainer>
-    <Button onClick={handlePrevMonth}>이전</Button>
+    <Button onClick={handlePrevMonth}>
+      <FaChevronLeft />
+    </Button>
     <YearAndMonth>
       {currYear}년 {currMonth}월
     </YearAndMonth>
     <Button disabled={currYear === 2025 && currMonth === 12} onClick={handleNextMonth}>
-      다음
+      <FaChevronRight />
     </Button>
   </HeaderContainer>
 );
