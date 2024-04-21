@@ -32,18 +32,22 @@ interface HeaderProps {
   handlePrevMonth: () => void;
   handleNextMonth: () => void;
 }
-const Header: FC<HeaderProps> = ({ currMonth, currYear, handlePrevMonth, handleNextMonth }) => (
-  <HeaderContainer>
-    <Button onClick={handlePrevMonth}>
-      <FaChevronLeft />
-    </Button>
-    <YearAndMonth>
-      {currYear}년 {currMonth}월
-    </YearAndMonth>
-    <Button disabled={currYear === 2025 && currMonth === 12} onClick={handleNextMonth}>
-      <FaChevronRight />
-    </Button>
-  </HeaderContainer>
-);
+const Header: FC<HeaderProps> = ({ currMonth, currYear, handlePrevMonth, handleNextMonth }) => {
+  const LIMIT_YEAR = 2025;
+  const LAST_MONTH = 12;
+  return (
+    <HeaderContainer>
+      <Button onClick={handlePrevMonth}>
+        <FaChevronLeft />
+      </Button>
+      <YearAndMonth>
+        {currYear}년 {currMonth}월
+      </YearAndMonth>
+      <Button disabled={currYear === LIMIT_YEAR && currMonth === LAST_MONTH} onClick={handleNextMonth}>
+        <FaChevronRight />
+      </Button>
+    </HeaderContainer>
+  );
+};
 
 export default Header;
