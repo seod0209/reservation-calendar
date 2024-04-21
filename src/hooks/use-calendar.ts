@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { getDaysInMonth } from 'date-fns'; // subMonths
 
 interface DateInfo {
@@ -9,8 +9,11 @@ interface DateInfo {
 const DAY_OF_WEEK = 7;
 const CALENDAR_LENGTH = 35;
 
-export function useCalendar() {
+export function useCalendar(currStartDate?: Date) {
   const [currDate, setCurrDate] = useState<Date>(new Date());
+
+  const currMonth = currDate.getMonth() + 1;
+  const currYear = currDate.getFullYear();
 
   const lastMonth = new Date(currDate.getFullYear(), currDate.getMonth() - 1, currDate.getDate());
 
@@ -40,9 +43,15 @@ export function useCalendar() {
     return acc;
   }, []);
 
+  useEffect(() => {
+    if (currStartDate) setCurrDate(currStartDate);
+  }, [currStartDate]);
+
   return {
     calendarGroupByWeek,
     currDate,
+    currMonth,
+    currYear,
     setCurrDate,
   };
 }

@@ -20,6 +20,10 @@ const StyledInput = styled.input<{ iserror: boolean }>`
   &:focus{
     box-shadow: ${({ iserror }) => (iserror ? '#fd3d1f80' : '#83c0fd80')} 0px 0px 0px 3px;
   }
+
+  &:disabled{
+    background-color: #d9d9d9;
+  }
 `;
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
