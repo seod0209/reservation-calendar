@@ -1,11 +1,12 @@
 import { useCallback, useEffect, useState } from 'react';
 
+import { dateFormatter } from '../utils/date-formatter';
 import { checkValidDate } from '../utils/check-valid-date';
 import { checkValidDateFormat } from '../utils/check-valid-date-format';
 import { checkValidLimitDate } from '../utils/check-valid-date-limit';
 import { calcDiffInDays } from '../utils/calc-difference-in-days';
 
-export function useDateRange() {
+export function useDateRange(setCurrDate: (date: Date) => void) {
   const [start, setStart] = useState<string>();
   const [end, setEnd] = useState<string>();
   const [currStartDate, setCurrStartDate] = useState<Date>();
@@ -24,53 +25,79 @@ export function useDateRange() {
     [currStartDate],
   );
 
-  const handleStart = (value: string) => {
-    if (isStartError) {
-      setIsStartError(false);
-    }
+  const handleStart = useCallback(
+    (value: string) => {
+      if (isStartError) {
+        setIsStartError(false);
+      }
 
-    setStart(checkValidDateFormat(value));
+      setStart(checkValidDateFormat(value));
 
-    if (value.length === 10) {
-      if (checkValidDate(value)) {
-        const day = checkValidLimitDate(value);
-        setStart(day.value);
-        setCurrStartDate(day.date);
+      if (value.length === 10) {
+        if (checkValidDate(value)) {
+          const day = checkValidLimitDate(value);
+          setStart(day.value);
+          setCurrStartDate(day.date);
+          setCurrDate(day.date);
 
-        if (currEndDate === undefined) {
-          setEnd(day.value);
-          setCurrEndDate(day.date);
+          if (currEndDate === undefined) {
+            setEnd(day.value);
+            setCurrEndDate(day.date);
+          }
+        } else {
+          setIsStartError(true);
         }
-      } else {
-        setIsStartError(true);
       }
-    }
-  };
+    },
+    [currEndDate, isStartError, setCurrDate],
+  );
 
-  const handleEnd = (value: string) => {
-    if (isEndError) {
-      setIsEndError(false);
-    }
-
-    setEnd(checkValidDateFormat(value));
-
-    if (value.length === 10) {
-      if (checkValidDate(value)) {
-        const day = checkValidateEndDate(value);
-        setEnd(day?.value);
-        setCurrEndDate(day?.date);
-      } else {
-        setIsEndError(true);
+  const handleEnd = useCallback(
+    (value: string) => {
+      if (isEndError) {
+        setIsEndError(false);
       }
-    }
-  };
+
+      setEnd(checkValidDateFormat(value));
+
+      if (value.length === 10) {
+        if (checkValidDate(value)) {
+          const day = checkValidateEndDate(value);
+          setEnd(day?.value);
+          setCurrEndDate(day?.date);
+        } else {
+          setIsEndError(true);
+        }
+      }
+    },
+    [checkValidateEndDate, isEndError],
+  );
+
+  const handleSelectDate = useCallback(
+    (date: Date) => {
+      const dateString = dateFormatter(date);
+      if (currStartDate === undefined || currStartDate > date) {
+        handleStart(dateString);
+        setCurrDate(date);
+      } else {
+        handleEnd(dateString);
+      }
+    },
+    [currStartDate, handleEnd, handleStart, setCurrDate],
+  );
 
   useEffect(() => {
-    if (currEndDate !== undefined && currStartDate !== undefined && currEndDate < currStartDate) {
-      setEnd(start);
-      setCurrEndDate(currStartDate);
+    if (currEndDate !== undefined && currStartDate !== undefined) {
+      if (currEndDate < currStartDate) {
+        setEnd(start);
+        setCurrEndDate(currStartDate);
+      } else {
+        const day = calcDiffInDays(currStartDate, currEndDate);
+        setEnd(day?.value);
+        setCurrEndDate(day?.date);
+      }
     }
-  }, [currEndDate, currStartDate, start]);
+  }, [checkValidateEndDate, currEndDate, currStartDate, start]);
 
   return {
     start,
@@ -81,5 +108,6 @@ export function useDateRange() {
     isEndError,
     handleStart,
     handleEnd,
+    handleSelectDate,
   };
 }

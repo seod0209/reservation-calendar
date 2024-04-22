@@ -1,36 +1,83 @@
-import { useEffect, useState } from 'react';
-import { getDaysInMonth } from 'date-fns'; // subMonths
+import { useState, useCallback, useMemo } from 'react';
+import { getDaysInMonth, subMonths } from 'date-fns'; // subMonths
 
 interface DateInfo {
-  date: number;
+  date: Date;
   type: string;
 }
 
 const DAY_OF_WEEK = 7;
 const CALENDAR_LENGTH = 35;
 
-export function useCalendar(currStartDate?: Date) {
+export function useCalendar() {
   const [currDate, setCurrDate] = useState<Date>(new Date());
 
   const currMonth = currDate.getMonth() + 1;
   const currYear = currDate.getFullYear();
 
-  const lastMonth = new Date(currDate.getFullYear(), currDate.getMonth() - 1, currDate.getDate());
-
+  const lastMonth = subMonths(currDate, 1);
   const totalDaysInLastMonth = getDaysInMonth(lastMonth);
   const totalDaysInMonth = getDaysInMonth(currDate);
 
-  const currMonthStartDay = new Date(currDate.getFullYear(), currDate.getMonth(), 1).getDay();
+  const currMonthStartDay = useMemo(() => new Date(currDate.getFullYear(), currDate.getMonth(), 1).getDay(), [currDate]);
 
-  const prevDays = Array.from({ length: Math.max(0, currMonthStartDay) }).map((_, idx) => ({
-    date: totalDaysInLastMonth - idx,
-    type: 'prev',
-  }));
-  const currDays = Array.from({ length: totalDaysInMonth }).map((_, i) => ({ date: i + 1, type: 'curr' }));
-  const nextDays = Array.from({ length: CALENDAR_LENGTH - prevDays.length - currDays.length }).map((_, idx) => ({
-    date: idx + 1,
-    type: 'next',
-  }));
+  const convertDate = useCallback(
+    (y: number, m: number, d: number, type: string) => {
+      let year;
+      let month;
+      let day;
+
+      switch (type) {
+        case 'prev':
+          year = m !== 1 ? y : y - 1;
+          month = m !== 1 ? m - 2 : 11;
+          day = totalDaysInLastMonth - d;
+
+          return {
+            date: new Date(year, month, day),
+            type,
+          };
+        case 'next':
+          year = m !== 12 ? y : y + 1;
+          month = m !== 12 ? m : 0;
+          day = d + 1;
+
+          return {
+            date: new Date(year, month, day),
+            type,
+          };
+        case 'curr':
+        /* intentional falls through */
+        default:
+          year = y;
+          month = m - 1;
+          day = d + 1;
+          return {
+            date: new Date(year, month, day),
+            type,
+          };
+      }
+    },
+    [totalDaysInLastMonth],
+  );
+
+  const prevDays = useMemo(
+    () =>
+      Array.from({ length: Math.max(0, currMonthStartDay) }).map((_, idx) => convertDate(currYear, currMonth, idx + 1, 'prev')),
+    [convertDate, currMonth, currMonthStartDay, currYear],
+  ).sort((a, b) => a.date.getDate() - b.date.getDate());
+
+  const currDays = useMemo(
+    () => Array.from({ length: totalDaysInMonth }).map((_, idx) => convertDate(currYear, currMonth, idx, 'curr')),
+    [convertDate, currMonth, currYear, totalDaysInMonth],
+  );
+  const nextDays = useMemo(
+    () =>
+      Array.from({ length: CALENDAR_LENGTH - prevDays.length - currDays.length }).map((_, idx) =>
+        convertDate(currYear, currMonth, idx, 'next'),
+      ),
+    [convertDate, currDays.length, currMonth, currYear, prevDays.length],
+  );
 
   const currCalendarList = prevDays.concat(currDays, nextDays);
 
@@ -42,10 +89,6 @@ export function useCalendar(currStartDate?: Date) {
     acc[chunkIndex].push(curr);
     return acc;
   }, []);
-
-  useEffect(() => {
-    if (currStartDate) setCurrDate(currStartDate);
-  }, [currStartDate]);
 
   return {
     calendarGroupByWeek,
