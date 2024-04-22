@@ -58,7 +58,6 @@ const Calendar: FC = () => {
 
   const checkIsIsInRange = useCallback((date: Date, startD?: Date, endD?: Date) => {
     if (startD && endD) {
-      console.log(date);
       return date >= startD && date <= endD;
     }
     return false;
