@@ -11,6 +11,8 @@
 
 - 예약 가능일을 확인할 수 있는 캘린더를 개발.
 - 캘린더에서 공휴일의 정보도 확인 가능.
+- https://main.dqycsru16d7mf.amplifyapp.com/
+- https://holiday.search.com/
 
 ## Installation
 
@@ -70,5 +72,19 @@ npm run build-storybook
 - [x] **검색 결과 화면에 노출된 공휴일의 수를 클릭할 경우, 아래 정보를 확인할 수 있어야합니다.**
   - 지정한 기간에 해당하는 공휴일의 상세 정보를 표시하되, 모든 공휴일을 한 페이지에서 볼 수 있어야 합니다.
   - 각 공휴일마다 날짜, 공휴일명은 필수로 표시되어야 하며, 그 이외의 데이터 중 필요하다고 생각되는 부분은 추가해주세요.
+- [x] 배포
+  - AWS amplify사용
+  - https://main.dqycsru16d7mf.amplifyapp.com/
+  - https://holiday.search.com/
 
 ## ScreenShot
+
+https://github.com/seod0209/payhere-fe-interview/assets/74766722/29e64e26-1b70-4175-9f27-635a1caff53b
+
+<img width="1680" alt="Screenshot 2024-04-23 at 14 03 59" src="https://github.com/seod0209/payhere-fe-interview/assets/74766722/12221295-8937-446a-99e9-9baa884f5240">
+
+<img width="510" alt="Screenshot 2024-04-23 at 17 07 54" src="https://github.com/seod0209/payhere-fe-interview/assets/74766722/1d2655af-2d10-4b97-9eae-009a70ac2171">
+
+<img width="510" alt="Screenshot 2024-04-23 at 17 08 00" src="https://github.com/seod0209/payhere-fe-interview/assets/74766722/c8ccfda9-825b-4a61-abae-b45c963d2fc6">
+
+
