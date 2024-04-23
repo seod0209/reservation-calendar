@@ -1,7 +1,7 @@
 import { FC, useState } from 'react';
 import styled from '@emotion/styled';
 
-import Box from '../../../../components/layout/Box';
+import Box from '@Components/layout/Box';
 
 import { useSearchHolidays } from './use-search-holidays';
 

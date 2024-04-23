@@ -1,10 +1,10 @@
 import { useCallback, useEffect, useState } from 'react';
 
-import { dateFormatter } from '../utils/date-formatter';
-import { checkValidDate } from '../utils/check-valid-date';
-import { checkValidDateFormat } from '../utils/check-valid-date-format';
-import { checkValidLimitDate } from '../utils/check-valid-date-limit';
-import { calcDiffInDays } from '../utils/calc-difference-in-days';
+import { dateFormatter } from '@Utils/date-formatter';
+import { checkValidDate } from '@Utils/check-valid-date';
+import { checkValidDateFormat } from '@Utils/check-valid-date-format';
+import { checkValidLimitDate } from '@Utils/check-valid-date-limit';
+import { calcDiffInDays } from '@Utils/calc-difference-in-days';
 
 export function useDateRange(setCurrDate: (date: Date) => void) {
   const [start, setStart] = useState<string>();

@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import styled from '@emotion/styled';
 
-import { Input } from '../input/Input';
+import { Input } from '@Components/input/Input';
 
 const Container = styled.div`
   display: flex;

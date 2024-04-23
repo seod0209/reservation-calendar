@@ -1,8 +1,8 @@
 import { useCallback, useState } from 'react';
 import { PublicHolidayDto } from 'apis/type';
 import { useSuspenseQueries } from '@tanstack/react-query';
-import { dateFormatter } from '../../../../utils/date-formatter';
-import { fetchPublicHolidays } from '../../../../apis/index';
+import { dateFormatter } from '@Utils/date-formatter';
+import { fetchPublicHolidays } from '@Apis/index';
 
 export interface HolidayInfo {
   holidaysYear: number;

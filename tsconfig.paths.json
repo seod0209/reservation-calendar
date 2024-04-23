@@ -5,7 +5,10 @@
       "@Pages/*": ["pages/*"],
       "@Public/*": ["../public/*"],
       "@Assets/*": ["assets/*"],
-      "@Components/*": ["components/*"]
+      "@Components/*": ["components/*"],
+      "@Hooks/*": ["hooks/*"],
+      "@Utils/*": ["utils/*"],
+      "@Apis/*": ["apis/*"]
     }
   }
 }

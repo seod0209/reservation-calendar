@@ -1,8 +1,8 @@
 import { FC, useState } from 'react';
 import styled from '@emotion/styled';
 
-import { Button } from '../../../../components/button/Button';
-import Calendar from '../../../../components/calendar';
+import { Button } from '@Components/button/Button';
+import Calendar from '@Components/calendar';
 
 const Container = styled.div`
   display: flex;
