@@ -7,10 +7,15 @@ import Loader from '../../../../components/loader';
 import HolidayListItem from './HolidayListItem';
 import { HolidayInfo } from './use-search-holidays';
 
-const HolidayListContainer = styled.div`
+const HolidayListContainer = styled.div<{ isvisible: boolean }>`
+  visibility: ${({ isvisible }) => (isvisible ? 'visible' : 'hidden')};
   display: flex;
   flex-direction: column;
   gap: 16px;
+  height: 72vh;
+  overflow: scroll;
+  border-radius: 16px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 2px 0px;
 `;
 
 const HolidayGroupByYearContainer = styled(Box)`
@@ -24,11 +29,13 @@ const YearCategroyText = styled.h4``;
 const ContentText = styled.div``;
 
 interface HolidayListProps {
+  isShowList?: boolean;
+
   holidayList: HolidayInfo[];
 }
 
-const HolidayList: FC<HolidayListProps> = ({ holidayList }) => (
-  <HolidayListContainer>
+const HolidayList: FC<HolidayListProps> = ({ holidayList, isShowList = false }) => (
+  <HolidayListContainer isvisible={isShowList}>
     <Suspense fallback={<Loader />}>
       {holidayList?.map((holidayGroup) => (
         <HolidayGroupByYearContainer key={holidayGroup.holidaysYear}>

@@ -23,7 +23,7 @@ const CalendarContainer = styled.div<{ isvisible: boolean }>`
   left: 0px;
 `;
 
-const TotalCount = styled.div``;
+const Text = styled.span``;
 
 interface CalendarAndHolidayTotalCountProps {
   start: string;
@@ -31,6 +31,8 @@ interface CalendarAndHolidayTotalCountProps {
   end: string;
 
   holidaysCount: number;
+
+  setIsShowList: () => void;
 
   handleSearchHolidays: (start: Date, end: Date) => void;
 }
@@ -40,18 +42,21 @@ const CalendarAndHolidayTotalCount: FC<CalendarAndHolidayTotalCountProps> = ({
   end,
   holidaysCount,
   handleSearchHolidays,
+  setIsShowList,
 }) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
   return (
     <Container>
-      <TotalCount> 총 공휴일수: {holidaysCount}</TotalCount>
+      <Text>기간: </Text>
       <CalendarButtonContainer>
         <Button label={`${start} - ${end}`} onClick={() => setIsOpen(!isOpen)} />
         <CalendarContainer isvisible={isOpen}>
           <Calendar searchDateRange={handleSearchHolidays} closeCalendar={() => setIsOpen(false)} />
         </CalendarContainer>
       </CalendarButtonContainer>
+      <Text>총 공휴일수: </Text>
+      <Button label={`${holidaysCount} 개`} onClick={setIsShowList} />
     </Container>
   );
 };

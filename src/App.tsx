@@ -6,18 +6,12 @@ import theme from './styles/theme';
 import GlobalStyle from './styles/Global';
 import Routes from './routes';
 
-import { Button } from './components/button/Button';
+import ErrorMessage from './components/layout/ErrorMessage';
 
 const queryClient = new QueryClient();
 
 function fallbackRender({ error, resetErrorBoundary }: { error: any; resetErrorBoundary: any }) {
-  return (
-    <div role="alert">
-      <p>Something went wrong:</p>
-      <pre style={{ color: 'red' }}>{error.message}</pre>
-      <Button label="Try again" onClick={() => resetErrorBoundary()} />
-    </div>
-  );
+  return <ErrorMessage message={error.message} resetErrorBoundary={resetErrorBoundary} />;
 }
 
 const App = () => {

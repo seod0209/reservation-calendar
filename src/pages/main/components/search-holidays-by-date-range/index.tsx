@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, useState } from 'react';
 import styled from '@emotion/styled';
 
 import Box from '../../../../components/layout/Box';
@@ -25,6 +25,7 @@ const PageTitle = styled.h3``;
 
 const SearchHolidaysByhDateRange: FC = () => {
   const { holidayList, holidaysCount, start, end, handleSearchHolidays } = useSearchHolidays();
+  const [isShowList, setIsShowList] = useState<boolean>(false);
 
   return (
     <SearchHolidaysByDateRangeContainer>
@@ -34,10 +35,11 @@ const SearchHolidaysByhDateRange: FC = () => {
           start={start}
           end={end}
           holidaysCount={holidaysCount}
+          setIsShowList={() => setIsShowList(true)}
           handleSearchHolidays={handleSearchHolidays}
         />
       </SearchDateRangeContainer>
-      <HolidayList holidayList={holidayList} />
+      <HolidayList holidayList={holidayList} isShowList={isShowList} />
     </SearchHolidaysByDateRangeContainer>
   );
 };
