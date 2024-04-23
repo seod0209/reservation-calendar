@@ -1,5 +1,5 @@
 import { useState, useCallback, useMemo } from 'react';
-import { getDaysInMonth, subMonths } from 'date-fns'; // subMonths
+import { getDaysInMonth, subMonths } from 'date-fns';
 
 interface DateInfo {
   date: Date;
@@ -21,50 +21,49 @@ export function useCalendar() {
 
   const currMonthStartDay = useMemo(() => new Date(currDate.getFullYear(), currDate.getMonth(), 1).getDay(), [currDate]);
 
-  const convertDate = useCallback(
-    (y: number, m: number, d: number, type: string) => {
-      let year;
-      let month;
-      let day;
+  const convertDate = useCallback((y: number, m: number, d: number, type: string, totalDays?: number) => {
+    let year;
+    let month;
+    let day;
 
-      switch (type) {
-        case 'prev':
-          year = m !== 1 ? y : y - 1;
-          month = m !== 1 ? m - 2 : 11;
-          day = totalDaysInLastMonth - d;
+    switch (type) {
+      case 'prev':
+        year = m !== 1 ? y : y - 1;
+        month = m !== 1 ? m - 2 : 11;
+        day = totalDays ? totalDays - d : d;
 
-          return {
-            date: new Date(year, month, day),
-            type,
-          };
-        case 'next':
-          year = m !== 12 ? y : y + 1;
-          month = m !== 12 ? m : 0;
-          day = d + 1;
+        return {
+          date: new Date(year, month, day),
+          type,
+        };
+      case 'next':
+        year = m !== 12 ? y : y + 1;
+        month = m !== 12 ? m : 0;
+        day = d + 1;
 
-          return {
-            date: new Date(year, month, day),
-            type,
-          };
-        case 'curr':
-        /* intentional falls through */
-        default:
-          year = y;
-          month = m - 1;
-          day = d + 1;
-          return {
-            date: new Date(year, month, day),
-            type,
-          };
-      }
-    },
-    [totalDaysInLastMonth],
-  );
+        return {
+          date: new Date(year, month, day),
+          type,
+        };
+      case 'curr':
+      /* intentional falls through */
+      default:
+        year = y;
+        month = m - 1;
+        day = d + 1;
+        return {
+          date: new Date(year, month, day),
+          type,
+        };
+    }
+  }, []);
 
   const prevDays = useMemo(
     () =>
-      Array.from({ length: Math.max(0, currMonthStartDay) }).map((_, idx) => convertDate(currYear, currMonth, idx + 1, 'prev')),
-    [convertDate, currMonth, currMonthStartDay, currYear],
+      Array.from({ length: Math.max(0, currMonthStartDay) }).map((_, idx) =>
+        convertDate(currYear, currMonth, idx + 1, 'prev', totalDaysInLastMonth),
+      ),
+    [convertDate, currMonth, currMonthStartDay, currYear, totalDaysInLastMonth],
   ).sort((a, b) => a.date.getDate() - b.date.getDate());
 
   const currDays = useMemo(

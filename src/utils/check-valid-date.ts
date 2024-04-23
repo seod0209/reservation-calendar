@@ -1,3 +1,7 @@
+/**
+ * 유효한 날짜인지 검사
+ * ex) 2024/02/30 => false
+ */
 export function checkValidDate(value: string) {
   let result = true;
   try {

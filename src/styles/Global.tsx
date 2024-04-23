@@ -58,20 +58,6 @@ const reset = css`
     padding: 0;
   }
 
-  video::-webkit-media-controls {
-    display: none !important;
-  }
-
-  video::-webkit-media-controls-container {
-    /**XXX: safari 안되고 있음 확인 필요 */
-    display: none !important;
-  }
-
-  #control-overlay:fullscreen video {
-    height: 100vh;
-    width: 100vw;
-  }
-
   @font-face {s
     font-family: 'Roboto', sans-serif;
     font-weight: 400;
