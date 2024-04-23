@@ -1,8 +1,8 @@
 import { FC, Suspense } from 'react';
 import styled from '@emotion/styled';
 
-import Box from '../../../../components/layout/Box';
-import Loader from '../../../../components/loader';
+import Box from '@Components/layout/Box';
+import Loader from '@Components/loader';
 
 import HolidayListItem from './HolidayListItem';
 import { HolidayInfo } from './use-search-holidays';
