@@ -13,6 +13,9 @@ import Controllers from './Controllers';
 
 const CalendarContainer = styled.div`
   width: fit-content;
+  background-color: #ffffff;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  padding: 16px;
 `;
 const RowContainer = styled.div`
   display: flex;
@@ -48,23 +51,15 @@ const DateButton = styled.button<{ isselected?: boolean; isactive?: boolean; isi
 
 interface CalendarProps {
   searchDateRange: (start: Date, end: Date) => void;
+
+  closeCalendar: () => void;
 }
 
-const Calendar: FC<CalendarProps> = ({ searchDateRange }) => {
+const Calendar: FC<CalendarProps> = ({ searchDateRange, closeCalendar }) => {
   const DAY_LIST = ['일', '월', '화', '수', '목', '금', '토'];
   const { calendarGroupByWeek, currDate, setCurrDate } = useCalendar();
-  const {
-    start,
-    end,
-    currStartDate,
-    currEndDate,
-    isStartError,
-    isEndError,
-    handleStart,
-    handleEnd,
-    handleSelectDate,
-    handleReset,
-  } = useDateRange(setCurrDate);
+  const { start, end, currStartDate, currEndDate, isStartError, isEndError, handleStart, handleEnd, handleSelectDate } =
+    useDateRange(setCurrDate);
 
   const checkIsSameDay = useCallback(
     (date: Date, startD?: Date, endD?: Date) => isSameDay(date, startD ?? '') || isSameDay(date, endD ?? ''),
@@ -81,6 +76,13 @@ const Calendar: FC<CalendarProps> = ({ searchDateRange }) => {
   const handlePrevMonth = () => setCurrDate(subMonths(currDate, 1));
 
   const handleNextMonth = () => setCurrDate(subMonths(currDate, -1));
+
+  const handleConfirmSearchDateRange = useCallback(() => {
+    if (currStartDate && currEndDate) {
+      searchDateRange(currStartDate, currEndDate);
+      closeCalendar();
+    }
+  }, [closeCalendar, currEndDate, currStartDate, searchDateRange]);
 
   return (
     <CalendarContainer>
@@ -121,10 +123,7 @@ const Calendar: FC<CalendarProps> = ({ searchDateRange }) => {
           </RowContainer>
         ))}
       </WeekListContainer>
-      <Controllers
-        handleCancel={handleReset}
-        handleConfirmSearchDateRange={() => currStartDate && currEndDate && searchDateRange(currStartDate, currEndDate)}
-      />
+      <Controllers handleCancel={closeCalendar} handleConfirmSearchDateRange={handleConfirmSearchDateRange} />
     </CalendarContainer>
   );
 };

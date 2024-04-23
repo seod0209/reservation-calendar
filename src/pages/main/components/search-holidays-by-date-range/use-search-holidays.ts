@@ -2,9 +2,10 @@ import { useQueries } from 'react-query';
 
 import { useCallback, useState } from 'react';
 import { PublicHolidayDto } from 'apis/type';
+import { dateFormatter } from '../../../../utils/date-formatter';
 import { fetchPublicHolidays } from '../../../../apis/index';
 
-interface HolidayInfo {
+export interface HolidayInfo {
   holidaysYear: number;
   holidays?: PublicHolidayDto[];
 }
@@ -47,12 +48,14 @@ export function useSearchHolidays() {
   });
 
   const isloading = queries.some((r) => r.isLoading);
-  const hoidaysCount = holidayList.map((h) => (h.holidays ? h.holidays.length : 0)).reduce((prev, curr) => prev + curr, 0);
+  const holidaysCount = holidayList.map((h) => (h.holidays ? h.holidays.length : 0)).reduce((prev, curr) => prev + curr, 0);
 
   return {
     holidayList,
-    hoidaysCount,
+    holidaysCount,
     isloading,
+    start: startDate ? dateFormatter(startDate) : '시작일',
+    end: endDate ? dateFormatter(endDate) : '종료일',
     handleSearchHolidays,
   };
 }
