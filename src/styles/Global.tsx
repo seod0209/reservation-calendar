@@ -25,9 +25,9 @@ const reset = css`
     -webkit-user-select:none;
     -moz-user-select:none;
     -ms-user-select:none;
-    user-select:none
+    user-select:none;
 
-    @media screen and (max-width: 768px) {
+    @media (max-width: 768px) {
       min-width: 360px;
       font-size: 12px;
     }

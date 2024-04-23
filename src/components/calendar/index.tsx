@@ -4,7 +4,6 @@ import styled from '@emotion/styled';
 
 import { useDateRange } from '@Hooks/use-date-range';
 import { useCalendar } from '@Hooks/use-calendar';
-
 import { dateFormatter } from '@Utils/date-formatter';
 
 import Header from './Header';
@@ -57,7 +56,9 @@ interface CalendarProps {
 
 const Calendar: FC<CalendarProps> = ({ searchDateRange, closeCalendar }) => {
   const DAY_LIST = ['일', '월', '화', '수', '목', '금', '토'];
+
   const { calendarGroupByWeek, currDate, setCurrDate } = useCalendar();
+
   const { start, end, currStartDate, currEndDate, isStartError, isEndError, handleStart, handleEnd, handleSelectDate } =
     useDateRange(setCurrDate);
 
