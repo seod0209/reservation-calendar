@@ -86,6 +86,13 @@ export function useDateRange(setCurrDate: (date: Date) => void) {
     [currStartDate, handleEnd, handleStart, setCurrDate],
   );
 
+  const handleReset = useCallback(() => {
+    setStart('');
+    setCurrStartDate(undefined);
+    setEnd('');
+    setCurrEndDate(undefined);
+  }, []);
+
   useEffect(() => {
     if (currEndDate !== undefined && currStartDate !== undefined) {
       if (currEndDate < currStartDate) {
@@ -109,5 +116,6 @@ export function useDateRange(setCurrDate: (date: Date) => void) {
     handleStart,
     handleEnd,
     handleSelectDate,
+    handleReset,
   };
 }

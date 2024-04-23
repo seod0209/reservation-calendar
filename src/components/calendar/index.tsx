@@ -9,6 +9,7 @@ import { dateFormatter } from '../../utils/date-formatter';
 
 import Header from './Header';
 import DateInputs from './DateInputs';
+import Controllers from './Controllers';
 
 const CalendarContainer = styled.div`
   width: fit-content;
@@ -45,11 +46,25 @@ const DateButton = styled.button<{ isselected?: boolean; isactive?: boolean; isi
   }
 `;
 
-const Calendar: FC = () => {
+interface CalendarProps {
+  searchDateRange: (start: Date, end: Date) => void;
+}
+
+const Calendar: FC<CalendarProps> = ({ searchDateRange }) => {
   const DAY_LIST = ['일', '월', '화', '수', '목', '금', '토'];
   const { calendarGroupByWeek, currDate, setCurrDate } = useCalendar();
-  const { start, end, currStartDate, currEndDate, isStartError, isEndError, handleStart, handleEnd, handleSelectDate } =
-    useDateRange(setCurrDate);
+  const {
+    start,
+    end,
+    currStartDate,
+    currEndDate,
+    isStartError,
+    isEndError,
+    handleStart,
+    handleEnd,
+    handleSelectDate,
+    handleReset,
+  } = useDateRange(setCurrDate);
 
   const checkIsSameDay = useCallback(
     (date: Date, startD?: Date, endD?: Date) => isSameDay(date, startD ?? '') || isSameDay(date, endD ?? ''),
@@ -106,6 +121,10 @@ const Calendar: FC = () => {
           </RowContainer>
         ))}
       </WeekListContainer>
+      <Controllers
+        handleCancel={handleReset}
+        handleConfirmSearchDateRange={() => currStartDate && currEndDate && searchDateRange(currStartDate, currEndDate)}
+      />
     </CalendarContainer>
   );
 };
