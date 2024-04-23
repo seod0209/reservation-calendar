@@ -1,14 +1,14 @@
-import styled from '@emotion/styled';
 import { FC } from 'react';
+import styled from '@emotion/styled';
 
-const LoaderContainer = styled.div`
+const SpinLoaderContainer = styled.div`
   position: absolute;
   display: flex;
   align-items: center;
   width: 100%;
   height: 100vh;
   background-color: #000000;
-  opacity: 0.7;
+  opacity: 0.3;
   z-index: 20;
 `;
 const Spinner = styled.div`
@@ -31,9 +31,9 @@ const Spinner = styled.div`
   }
 `;
 
-const Loader: FC = () => (
-  <LoaderContainer>
+const SpinLoader: FC = () => (
+  <SpinLoaderContainer>
     <Spinner />
-  </LoaderContainer>
+  </SpinLoaderContainer>
 );
-export default Loader;
+export default SpinLoader;

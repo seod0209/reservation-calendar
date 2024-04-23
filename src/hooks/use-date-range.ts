@@ -11,6 +11,7 @@ export function useDateRange(setCurrDate: (date: Date) => void) {
   const [end, setEnd] = useState<string>();
   const [currStartDate, setCurrStartDate] = useState<Date>();
   const [currEndDate, setCurrEndDate] = useState<Date>();
+
   const [isStartError, setIsStartError] = useState<boolean>(false);
   const [isEndError, setIsEndError] = useState<boolean>(false);
 

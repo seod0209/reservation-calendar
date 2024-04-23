@@ -25,9 +25,9 @@ const reset = css`
     -webkit-user-select:none;
     -moz-user-select:none;
     -ms-user-select:none;
-    user-select:none
+    user-select:none;
 
-    @media screen and (max-width: 768px) {
+    @media (max-width: 768px) {
       min-width: 360px;
       font-size: 12px;
     }
@@ -56,20 +56,6 @@ const reset = css`
   span {
     margin: 0;
     padding: 0;
-  }
-
-  video::-webkit-media-controls {
-    display: none !important;
-  }
-
-  video::-webkit-media-controls-container {
-    /**XXX: safari 안되고 있음 확인 필요 */
-    display: none !important;
-  }
-
-  #control-overlay:fullscreen video {
-    height: 100vh;
-    width: 100vw;
   }
 
   @font-face {s

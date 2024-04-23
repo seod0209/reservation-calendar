@@ -4,7 +4,6 @@ import styled from '@emotion/styled';
 import Box from '@Components/layout/Box';
 
 import { useSearchHolidays } from './use-search-holidays';
-
 import CalendarAndHolidayTotalCount from './CalendarAndHolidayTotalCount';
 import HolidayList from './HolidayList';
 
@@ -30,7 +29,7 @@ const SearchHolidaysByhDateRange: FC = () => {
   return (
     <SearchHolidaysByDateRangeContainer>
       <SearchDateRangeContainer>
-        <PageTitle>서비스 예약 가능일 확인</PageTitle>
+        <PageTitle>서비스 예약 가능일</PageTitle>
         <CalendarAndHolidayTotalCount
           start={start}
           end={end}

@@ -10,6 +10,11 @@ const Container = styled.div`
   align-items: center;
   gap: 16px;
   width: 100%;
+  @media (max-width: 768px) {
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+  }
 `;
 
 const CalendarButtonContainer = styled.div`
@@ -21,6 +26,9 @@ const CalendarContainer = styled.div<{ isvisible: boolean }>`
   position: absolute;
   top: 50px;
   left: 0px;
+  @media (max-width: 768px) {
+    left: -24px;
+  }
 `;
 
 const Text = styled.span``;

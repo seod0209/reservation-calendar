@@ -2,7 +2,7 @@ import { FC, Suspense } from 'react';
 import styled from '@emotion/styled';
 
 import Box from '@Components/layout/Box';
-import Loader from '@Components/loader';
+import Loader from '@Components/loader/SpinLoader';
 
 import HolidayListItem from './HolidayListItem';
 import { HolidayInfo } from './use-search-holidays';
