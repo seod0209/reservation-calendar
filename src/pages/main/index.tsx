@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import styled from '@emotion/styled';
-import SearchHolidays from './components/search-holidays';
+import SearchHolidays from './components/search-holidays-by-date-range';
 
 const MainContainer = styled.div`
   width: 100vw;
