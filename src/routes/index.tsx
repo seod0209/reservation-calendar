@@ -1,7 +1,7 @@
 import { FC, Suspense } from 'react';
 import { BrowserRouter, Navigate, Route, Routes as DomRoutes } from 'react-router-dom';
 
-import MainPage from '../pages/main';
+import MainPage from '@Pages/main';
 
 const renderLoader = (): null => null;
 
