@@ -24,7 +24,7 @@ const SearchDateRangeContainer = styled(Box)`
 const PageTitle = styled.h3``;
 
 const SearchHolidaysByhDateRange: FC = () => {
-  const { holidayList, holidaysCount, isloading, start, end, handleSearchHolidays } = useSearchHolidays();
+  const { holidayList, holidaysCount, start, end, handleSearchHolidays } = useSearchHolidays();
 
   return (
     <SearchHolidaysByDateRangeContainer>
@@ -37,7 +37,7 @@ const SearchHolidaysByhDateRange: FC = () => {
           handleSearchHolidays={handleSearchHolidays}
         />
       </SearchDateRangeContainer>
-      <HolidayList holidayList={holidayList} isLoading={isloading} />
+      <HolidayList holidayList={holidayList} />
     </SearchHolidaysByDateRangeContainer>
   );
 };
