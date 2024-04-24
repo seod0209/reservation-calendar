@@ -12,7 +12,7 @@
 - 예약 가능일을 확인할 수 있는 캘린더를 개발.
 - 캘린더에서 공휴일의 정보도 확인 가능.
 - https://main.dqycsru16d7mf.amplifyapp.com/
-- https://holiday.search.com/
+
 
 ## Installation
 
@@ -73,9 +73,9 @@ npm run build-storybook
   - 지정한 기간에 해당하는 공휴일의 상세 정보를 표시하되, 모든 공휴일을 한 페이지에서 볼 수 있어야 합니다.
   - 각 공휴일마다 날짜, 공휴일명은 필수로 표시되어야 하며, 그 이외의 데이터 중 필요하다고 생각되는 부분은 추가해주세요.
 - [x] 배포
-  - AWS amplify사용
+  - AWS amplify사용.
   - https://main.dqycsru16d7mf.amplifyapp.com/
-  - https://holiday.search.com/
+
 
 ## ScreenShot
 
