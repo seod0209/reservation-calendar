@@ -19,7 +19,7 @@
 1. 레포지토리 클론받기
 
 ```bash
-git clone https://github.com/seod0209/payhere-fe-interview.git
+https://github.com/seod0209/reservation-calendar.git
 ```
 
 2. 필요한 모든 라이브러리 설치
@@ -61,8 +61,6 @@ npm run build-storybook
 ```
 
 ## Check List
-
-- 노션: https://payhere.notion.site/3adb7d31aa8c44eab432194805538c54
 - [x] **캘린더에서 시작일과 종료일을 선택하여, 해당 기간 내의 공휴일 정보를 검색할 수 있어야합니다.**
   - 시작일과 종료일의 간격은 최대 2년입니다.
   - 종료일은 최대 2025년까지만 선택할 수 있습니다.
