@@ -1,4 +1,4 @@
-# payhere-fe-interview
+# Reservation calendar
 
 ## Built with
 
